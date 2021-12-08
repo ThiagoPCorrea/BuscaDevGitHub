@@ -2,16 +2,19 @@ import React from "react";
 import {  Grid } from '@mui/material';
 import { GrayButton } from '../../components/buttons/ContainedButtons.js'
 import {PasswordInput,TextInput} from '../../components/inputs/OutlinedInputs.js'
-import './login.css'
+import './cadastro.css'
 
-export const Login = () => {
+export const Cadastro = () => {
     return (
         <Grid container spacing={2} direction='column' alignItems='center' justifyContent='center' className='centerGrid'>
             <Grid item>
-                <label>Busca de Usuarios do GitHub</label>
+                <label>Cadastro de Usuários</label>
             </Grid>
             <Grid item>
-                <TextInput id="lbl_email" label="Email" />
+                <TextInput id="lbl_nome" label="Nome" Icontype="USER"/>
+            </Grid>
+            <Grid item>
+                <TextInput id="lbl_email" label="Email" Icontype="EMAIL" />
             </Grid>
             <Grid item>
                 <PasswordInput id="lbl_password" label="Senha" />
@@ -19,10 +22,10 @@ export const Login = () => {
             <Grid item>
                 <Grid container spacing={2} direction='row' alignItems='center' justifyContent='center'>
                     <Grid item>
-                        <GrayButton id="btn_login">Logar</GrayButton>
+                        <GrayButton id="btn_confirm">Confirmar</GrayButton>
                     </Grid>
                     <Grid item>
-                        <GrayButton id="btn_newUser">Novo Usuario</GrayButton>
+                        <GrayButton id="btn_back">Voltar</GrayButton>
                     </Grid>
                 </Grid>
             </Grid>
