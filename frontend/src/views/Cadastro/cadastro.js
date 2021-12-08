@@ -1,34 +1,36 @@
 import React from "react";
-import {  Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { GrayButton } from '../../components/buttons/ContainedButtons.js'
-import {PasswordInput,TextInput} from '../../components/inputs/OutlinedInputs.js'
+import { PasswordInput, TextInput } from '../../components/inputs/OutlinedInputs.js'
+import { CenterGrid } from '../../components/layouts/grids.js'
+import { Email, Person } from '@mui/icons-material';
 import './cadastro.css'
 
 export const Cadastro = () => {
     return (
-        <Grid container spacing={2} direction='column' alignItems='center' justifyContent='center' className='centerGrid'>
+        <CenterGrid direction='column' spacing={2} style={{ minHeight: '100vh' }}>
             <Grid item>
                 <label>Cadastro de Usuários</label>
             </Grid>
             <Grid item>
-                <TextInput id="lbl_nome" label="Nome" Icontype="USER"/>
+                <TextInput id="lbl_nome" label="Nome" icon={<Person />} />
             </Grid>
             <Grid item>
-                <TextInput id="lbl_email" label="Email" Icontype="EMAIL" />
+                <TextInput id="lbl_email" label="Email" icon={<Email />} />
             </Grid>
             <Grid item>
                 <PasswordInput id="lbl_password" label="Senha" />
             </Grid>
             <Grid item>
-                <Grid container spacing={2} direction='row' alignItems='center' justifyContent='center'>
+                <CenterGrid direction='row' spacing={2}>
                     <Grid item>
                         <GrayButton id="btn_confirm">Confirmar</GrayButton>
                     </Grid>
                     <Grid item>
                         <GrayButton id="btn_back">Voltar</GrayButton>
                     </Grid>
-                </Grid>
+                </CenterGrid>
             </Grid>
-        </Grid>
+        </CenterGrid>
     );
 }

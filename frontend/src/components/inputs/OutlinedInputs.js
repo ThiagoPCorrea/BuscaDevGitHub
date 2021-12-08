@@ -50,7 +50,7 @@ export const PasswordInput = ({id,label}) => {
 }
 
 
-export const TextInput = ({id,label,Icontype}) => {
+export const TextInput = ({id,label,icon}) => {
     return (
         <FormControl variant="outlined">
             <InputLabel htmlFor={id}>{label}</InputLabel>
@@ -62,11 +62,7 @@ export const TextInput = ({id,label,Icontype}) => {
                   <IconButton
                     edge="end"
                   >
-                    { Icontype === "EMAIL" ? < Email/> 
-                      : 
-                      (Icontype === "USER" ? < Person/> 
-                      : 
-                      "")}
+                    {icon}
                         
                   </IconButton>
                 </InputAdornment>
