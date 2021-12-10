@@ -4,13 +4,13 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import { Login } from './views/Login/login.js';
-import { Cadastro } from './views/Cadastro/cadastro.js';
-import { Busca } from './views/Busca/busca.js';
-import { Repositorios } from './views/Repositorios/repositorios.js';
+import { Login } from './views/Login/login';
+import { Cadastro } from './views/Cadastro/cadastro';
+import { Busca } from './views/Busca/busca';
+import { Repositorios } from './views/Repositorios/repositorios';
+import { Estatistica } from './views/Estatistica/estatistica';
 import { ThemeProvider } from 'styled-components'
 import { theme } from './utils/Colors'
-import './App.css'
 
 export default function App() {
   return (
@@ -22,6 +22,7 @@ export default function App() {
             <Route path="/Cadastro" element={<Cadastro />} title='Cadastro de Usuario' />
             <Route path="/Busca" element={<Busca />} title='Busca' />
             <Route path="/Repositorios" element={<Repositorios />} title='Repositorios' />
+            <Route path="/Estatistica" element={<Estatistica />} title='Estatistica' />
           </Routes>
         </ThemeProvider>
       </Router>

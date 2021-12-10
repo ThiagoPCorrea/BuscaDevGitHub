@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Grid, Avatar, Typography, Button } from '@mui/material';
 
 export const Container = styled(Grid)`
-    padding:10%;
     ${({ theme }) => `
         background-color: ${theme.palette.gray.main};
     `}

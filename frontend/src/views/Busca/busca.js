@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 import { GrayButton } from '../../components/buttons/ContainedButtons'
 import { TextInput } from '../../components/inputs/OutlinedInputs'
 import { CenterGrid } from '../../components/grids/grids'
-import { Search } from '@mui/icons-material';
+import { Search, BarChart } from '@mui/icons-material';
 
 export const Busca = () => {
     return (
@@ -18,6 +18,9 @@ export const Busca = () => {
                     </Grid>
                     <Grid item>
                         <GrayButton id="btn_search" icon={<Search/>}>Buscar</GrayButton>
+                    </Grid>
+                    <Grid item>
+                        <GrayButton id="btn_stat" icon={<BarChart/>}>Estatística</GrayButton>
                     </Grid>
                 </CenterGrid>
             </Grid>
