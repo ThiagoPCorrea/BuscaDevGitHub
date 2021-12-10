@@ -1,8 +1,8 @@
 import React from "react";
 import { Grid } from '@mui/material';
-import { GrayButton } from '../../components/buttons/ContainedButtons.js'
-import { TextInput } from '../../components/inputs/OutlinedInputs.js'
-import { CenterGrid } from '../../components/layouts/grids.js'
+import { GrayButton } from '../../components/buttons/ContainedButtons'
+import { TextInput } from '../../components/inputs/OutlinedInputs'
+import { CenterGrid } from '../../components/grids/grids'
 import { Search } from '@mui/icons-material';
 
 export const Busca = () => {

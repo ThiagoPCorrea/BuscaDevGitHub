@@ -1,8 +1,8 @@
 import React from "react";
 import { Grid } from '@mui/material';
-import { GrayButton } from '../../components/buttons/ContainedButtons.js'
-import { PasswordInput, TextInput } from '../../components/inputs/OutlinedInputs.js'
-import { CenterGrid } from '../../components/layouts/grids.js'
+import { GrayButton } from '../../components/buttons/ContainedButtons'
+import { PasswordInput, TextInput } from '../../components/inputs/OutlinedInputs'
+import { CenterGrid } from '../../components/grids/grids'
 import { Email, Person } from '@mui/icons-material';
 import './cadastro.css'
 

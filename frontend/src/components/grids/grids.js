@@ -8,3 +8,12 @@ export const CenterGrid = ({children,direction,spacing,style}) =>{
         </Grid>
     );
 }
+
+
+export const HorizontalCenterGrid = ({children,direction,spacing,style}) =>{
+    return (
+        <Grid container spacing={spacing} direction={direction} style={style}>
+            {children}
+        </Grid>
+    );
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import { OutlinedInput, InputLabel, IconButton, InputAdornment,FormControl  } from '@mui/material';
-import { VisibilityOff,Visibility,Email,Person } from '@mui/icons-material';
+import { VisibilityOff,Visibility } from '@mui/icons-material';
 
 export const PasswordInput = ({id,label}) => {
     const [values, setValues] = React.useState({
@@ -59,11 +59,8 @@ export const TextInput = ({id,label,icon}) => {
             type='text'
             endAdornment={
                 <InputAdornment position="end">
-                  <IconButton
-                    edge="end"
-                  >
+                  <IconButton edge="end">
                     {icon}
-                        
                   </IconButton>
                 </InputAdornment>
             }
