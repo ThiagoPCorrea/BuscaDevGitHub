@@ -1,19 +1,17 @@
-// Require the framework and instantiate it
-// CommonJs
 const fastify = require('fastify')({
   logger: true
 })
 
-// Declare a route
-fastify.get('/', function (request, reply) {
-  reply.send({ hello: 'world' })
-})
+const UserRoutes = require('./Routes/UserRoutes');
+const StatisticRoutes  = require('./Routes/StatisticRoutes');
+
+fastify.register(UserRoutes);
+fastify.register(StatisticRoutes);
 
 // Run the server!
-fastify.listen(3000, function (err, address) {
+fastify.listen(4000, function (err, address) {
   if (err) {
     fastify.log.error(err)
     process.exit(1)
   }
-  // Server is now listening on ${address}
 })
