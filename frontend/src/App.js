@@ -4,7 +4,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import { Login } from './views/Login/login';
+import { Entrar } from './views/Entrar/entrar';
 import { Cadastro } from './views/Cadastro/cadastro';
 import { Busca } from './views/Busca/busca';
 import { Repositorios } from './views/Repositorios/repositorios';
@@ -18,7 +18,7 @@ export default function App() {
       <Router>
         <ThemeProvider theme={theme}>
           <Routes>
-            <Route path="/" element={<Login />} title='Login' />
+            <Route path="/" element={<Entrar />} title='Entrar' />
             <Route path="/Cadastro" element={<Cadastro />} title='Cadastro de Usuario' />
             <Route path="/Busca" element={<Busca />} title='Busca' />
             <Route path="/Repositorios" element={<Repositorios />} title='Repositorios' />

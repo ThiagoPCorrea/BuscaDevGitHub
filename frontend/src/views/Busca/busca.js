@@ -3,9 +3,24 @@ import { Grid } from '@mui/material';
 import { GrayButton } from '../../components/buttons/ContainedButtons'
 import { TextInput } from '../../components/inputs/OutlinedInputs'
 import { CenterGrid } from '../../components/grids/grids'
-import { Search, BarChart } from '@mui/icons-material';
+import { Search, BarChart, Logout } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 export const Busca = () => {
+    const navigate  = useNavigate();
+
+    function btnSearchClick(){
+        navigate('/Repositorios');
+    }
+
+    function btnStatClick(){
+        navigate('/Estatistica');
+    }
+
+    function btnLogoutClick(){
+        navigate('/');
+    }
+
     return (
         <CenterGrid direction='column' spacing={2} style={{ minHeight: '100vh' }}>
             <Grid item>
@@ -17,10 +32,13 @@ export const Busca = () => {
                         <TextInput id="lbl_nome" label="Username" Icontype="USER" />
                     </Grid>
                     <Grid item>
-                        <GrayButton id="btn_search" icon={<Search/>}>Buscar</GrayButton>
+                        <GrayButton id="btn_search" icon={<Search />} onClick={btnSearchClick}>Buscar</GrayButton>
                     </Grid>
                     <Grid item>
-                        <GrayButton id="btn_stat" icon={<BarChart/>}>Estatística</GrayButton>
+                        <GrayButton id="btn_stat" icon={<BarChart />} onClick={btnStatClick}>Estatística</GrayButton>
+                    </Grid>
+                    <Grid item>
+                        <GrayButton id="btn_logout" icon={<Logout />} onClick={btnLogoutClick}>Sair</GrayButton>
                     </Grid>
                 </CenterGrid>
             </Grid>

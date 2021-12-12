@@ -2,9 +2,10 @@ import React from "react";
 import {  Stack, Container } from '@mui/material';
 import { People, FavoriteBorder, StarOutline, Apartment, LocationOnOutlined, EmailOutlined, LinkOutlined } from '@mui/icons-material/';
 import { InlineIconText } from '../texts/texts';
+import { ArrowBack } from '@mui/icons-material';
 import * as S from './style';
 
-export const UserMenu = () => {
+export const UserMenu = ({voltarClick}) => {
     return (
         <S.Container
             container
@@ -54,7 +55,7 @@ export const UserMenu = () => {
                             <LinkOutlined /> @myTwitter
                         </S.Text>
                     </Stack>
-                    <S.WhiteButton variant="contained">Voltar</S.WhiteButton>
+                    <S.WhiteButton variant="contained" startIcon={<ArrowBack />} onClick={voltarClick}>Voltar</S.WhiteButton>
                 </Stack>
             </Container>
         </S.Container>

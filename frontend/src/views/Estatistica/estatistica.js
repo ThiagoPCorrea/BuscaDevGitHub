@@ -1,12 +1,14 @@
 import React from "react";
 import { Paper, Grid } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { ArrowBack } from '@mui/icons-material';
+import { GrayButton } from '../../components/buttons/ContainedButtons'
 import {
     ArgumentAxis,
     ValueAxis,
     Chart,
     BarSeries,
 } from '@devexpress/dx-react-chart-material-ui';
-import { GrayButton } from '../../components/buttons/ContainedButtons'
 
 const data = [
     { argument: 'Monday', value: 30 },
@@ -17,6 +19,11 @@ const data = [
 ];
 
 export const Estatistica = () => {
+    const navigate  = useNavigate();
+
+    function btnBackClick(){
+        navigate('/Busca');
+    }
     return (
         <Grid container direction='column' spacing={2} justifyContent="center" alignItems="stretch">
             <Grid item>
@@ -32,7 +39,7 @@ export const Estatistica = () => {
                 </Paper>
             </Grid>
             <Grid item>
-                <GrayButton id="btn_search">Voltar</GrayButton>
+                <GrayButton id="btn_search" icon={<ArrowBack />} onClick={btnBackClick}>Voltar</GrayButton>
             </Grid>
         </Grid>
 

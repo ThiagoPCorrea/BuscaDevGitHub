@@ -4,9 +4,17 @@ import { GrayButton } from '../../components/buttons/ContainedButtons'
 import { PasswordInput, TextInput } from '../../components/inputs/OutlinedInputs'
 import { CenterGrid } from '../../components/grids/grids'
 import { Email, Person } from '@mui/icons-material';
+import { useNavigate  } from 'react-router-dom';
+import { Check, ArrowBack } from '@mui/icons-material';
 import './cadastro.css'
 
 export const Cadastro = () => {
+    const navigate  = useNavigate();
+
+    function btnBackClick(){
+        navigate('/');
+    }
+
     return (
         <CenterGrid direction='column' spacing={2} style={{ minHeight: '100vh' }}>
             <Grid item>
@@ -24,10 +32,10 @@ export const Cadastro = () => {
             <Grid item>
                 <CenterGrid direction='row' spacing={2}>
                     <Grid item>
-                        <GrayButton id="btn_confirm">Confirmar</GrayButton>
+                        <GrayButton id="btn_confirm" icon={<Check />}>Confirmar</GrayButton>
                     </Grid>
                     <Grid item>
-                        <GrayButton id="btn_back">Voltar</GrayButton>
+                        <GrayButton id="btn_back" icon={<ArrowBack />} onClick={btnBackClick}>Voltar</GrayButton>
                     </Grid>
                 </CenterGrid>
             </Grid>
