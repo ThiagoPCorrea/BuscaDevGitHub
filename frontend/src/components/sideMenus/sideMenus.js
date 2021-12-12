@@ -1,11 +1,14 @@
 import React from "react";
-import {  Stack, Container } from '@mui/material';
+import { Stack, Container } from '@mui/material';
 import { People, FavoriteBorder, StarOutline, Apartment, LocationOnOutlined, EmailOutlined, LinkOutlined } from '@mui/icons-material/';
 import { InlineIconText } from '../texts/texts';
 import { ArrowBack } from '@mui/icons-material';
 import * as S from './style';
 
-export const UserMenu = ({voltarClick}) => {
+export const UserMenu = ({ voltarClick, dados }) => {
+    if(dados.blog)
+        window.open(dados.blog)
+
     return (
         <S.Container
             container
@@ -16,43 +19,46 @@ export const UserMenu = ({voltarClick}) => {
             style={{ minHeight: '100vh' }}
         >
             <Container>
-                <Stack spacing={4} justifyContent={'center'}>
-                    <S.UserImage
-                        src='https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg'
-                        variant="square"
-                    />
+                <Stack spacing={2} justifyContent={'center'}>
+                    <Stack alignItems={'center'}>
+                        <S.UserImage
+                            src={dados.avatar ? dados.avatar
+                                :
+                                'https://www.oseyo.co.uk/wp-content/uploads/2020/05/empty-profile-picture-png-2-2.png'}
+                            variant="square"
+                        />
+                    </Stack>
                     <Stack>
-                        <S.Text variant="h5">
-                            Developer's full name
+                        <S.Text variant="h5" component={'span'}>
+                            {dados.name ? dados.name : 'Sem Nome'}
                         </S.Text>
-                        <S.Text variant="subtitle1" >
-                            @Username
+                        <S.Text variant="subtitle1" component={'span'}>
+                            {dados.username ? dados.username : 'Sem Username'}
                         </S.Text>
                     </Stack>
-                    <S.Text variant="body2">
-                        Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit. Sed tincidunt congue ligula in rutrum. Morbi nec lacus condimentum, hendrerit mi eu, feugiat.
-                    </S.Text>
+                    <S.Text variant="body2" component={'span'}>
+                        {dados.bio ? dados.bio : 'Sem Bio'}
+                     </S.Text>
                     <Stack direction='row' justifyContent={'space-between'}>
-                        <InlineIconText fontSize='15px' icon={<People />} text='200 followers' />
-                        <InlineIconText fontSize='15px' icon={<FavoriteBorder />} text='130 following' />
-                        <InlineIconText fontSize='15px' icon={<StarOutline />} text='100 stars' />
+                        <InlineIconText fontSize='15px' icon={<People />} text={dados.followers +' followers'}/>
+                        <InlineIconText fontSize='15px' icon={<FavoriteBorder />} text={dados.following +' following'} />
+                        <InlineIconText fontSize='15px' icon={<StarOutline />} text={dados.stars +' stars'}/>
                     </Stack>
                     <Stack>
-                        <S.Text variant="h6">
-                            <Apartment /> organization
+                        <S.Text variant="h6" component={'span'}>
+                            <Apartment /> {dados.organization ? dados.organization : 'Sem Organização'}
                         </S.Text>
-                        <S.Text variant="h6">
-                            <LocationOnOutlined /> location
+                        <S.Text variant="h6" component={'span'}>
+                            <LocationOnOutlined /> {dados.location ? dados.location : 'Sem Local'}
                         </S.Text>
-                        <S.Text variant="h6">
-                            <EmailOutlined /> email
+                        <S.Text variant="h6" component={'span'}>
+                            <EmailOutlined /> {dados.email ? dados.email : 'Sem E-mail'}
                         </S.Text>
-                        <S.Text variant="h6">
-                            <LinkOutlined /> www.mywebsite.com
+                        <S.Text variant="h6" component={'span'}>
+                            <LinkOutlined /> {dados.blog ? dados.blog : 'Sem Blog'}
                         </S.Text>
-                        <S.Text variant="h6">
-                            <LinkOutlined /> @myTwitter
+                        <S.Text variant="h6" component={'span'}>
+                            <LinkOutlined />  {dados.twitter ? dados.twitter : 'Sem Twitter'}
                         </S.Text>
                     </Stack>
                     <S.WhiteButton variant="contained" startIcon={<ArrowBack />} onClick={voltarClick}>Voltar</S.WhiteButton>

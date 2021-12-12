@@ -50,7 +50,7 @@ export const PasswordInput = ({id,label}) => {
 }
 
 
-export const TextInput = ({id,label,icon}) => {
+export const TextInput = ({id,label,icon,onChange}) => {
     return (
         <FormControl variant="outlined">
             <InputLabel htmlFor={id}>{label}</InputLabel>
@@ -65,6 +65,7 @@ export const TextInput = ({id,label,icon}) => {
                 </InputAdornment>
             }
             label={label}
+            onChange={onChange}
           />
        </FormControl>
     );
