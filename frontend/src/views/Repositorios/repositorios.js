@@ -22,17 +22,17 @@ export const Repositorios = () => {
         twitter: data.state.twitter_username,
         followers: data.state.followers,
         following: data.state.following,
-        blog: data.state.blog,
-        stars: 0
+        blog: data.state.blog
     };
     const [repoData, setRepoData] = useState([])
+    const [starsData, setStarsData] = useState([])
 
     const fetchStars = () => {
         fetch(data.state.starred_url.replace("{/owner}{/repo}", ""), requestOptions)
             .then((response) => {
                 if (response.ok) {
                     return response.json().then((data) => {
-                        userData.stars = data.reduce((accumulator, current) => accumulator + current.stargazers_count, 0);
+                        setStarsData(data.reduce((accumulator, current) => accumulator + current.stargazers_count, 0));
                     }).catch((err) => {
                         console.log(err);
                     })
@@ -72,7 +72,7 @@ export const Repositorios = () => {
         <Container maxWidth={false} disableGutters style={{ padding: 0 }}>
             <Grid container spacing={2} columns={12}>
                 <Grid item xs={4}>
-                    <UserMenu voltarClick={btnBackClick} dados={userData} />
+                    <UserMenu voltarClick={btnBackClick} dados={userData} stars={starsData} />
                 </Grid>
                 <Grid item xs={8} style={{maxHeight: '100vh', overflow: 'auto'}}>
                     <List>

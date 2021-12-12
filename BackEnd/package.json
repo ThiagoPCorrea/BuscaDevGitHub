@@ -10,6 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "fastify": "^3.24.1",
-    "mysql": "^2.18.1"
+    "mysql2": "^2.3.3"
   }
 }

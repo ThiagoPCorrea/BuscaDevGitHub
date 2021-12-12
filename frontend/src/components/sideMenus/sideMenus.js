@@ -1,14 +1,17 @@
 import React from "react";
 import { Stack, Container } from '@mui/material';
-import { People, FavoriteBorder, StarOutline, Apartment, LocationOnOutlined, EmailOutlined, LinkOutlined } from '@mui/icons-material/';
+import { People, FavoriteBorder, StarOutline, Apartment, LocationOnOutlined, EmailOutlined, LinkOutlined, ArrowBack, Twitter }
+    from '@mui/icons-material/';
 import { InlineIconText } from '../texts/texts';
-import { ArrowBack } from '@mui/icons-material';
 import * as S from './style';
 
-export const UserMenu = ({ voltarClick, dados }) => {
-    if(dados.blog)
-        window.open(dados.blog)
+export const UserMenu = ({ voltarClick, dados,stars }) => {
+    function openBlog() {
+        if (dados.blog)
+            window.open(dados.blog)
+    }
 
+    openBlog();
     return (
         <S.Container
             container
@@ -38,11 +41,11 @@ export const UserMenu = ({ voltarClick, dados }) => {
                     </Stack>
                     <S.Text variant="body2" component={'span'}>
                         {dados.bio ? dados.bio : 'Sem Bio'}
-                     </S.Text>
+                    </S.Text>
                     <Stack direction='row' justifyContent={'space-between'}>
-                        <InlineIconText fontSize='15px' icon={<People />} text={dados.followers +' followers'}/>
-                        <InlineIconText fontSize='15px' icon={<FavoriteBorder />} text={dados.following +' following'} />
-                        <InlineIconText fontSize='15px' icon={<StarOutline />} text={dados.stars +' stars'}/>
+                        <InlineIconText fontSize='15px' icon={<People />} text={dados.followers + ' followers'} />
+                        <InlineIconText fontSize='15px' icon={<FavoriteBorder />} text={dados.following + ' following'} />
+                        <InlineIconText fontSize='15px' icon={<StarOutline />} text={stars + ' stars'} />
                     </Stack>
                     <Stack>
                         <S.Text variant="h6" component={'span'}>
@@ -54,11 +57,11 @@ export const UserMenu = ({ voltarClick, dados }) => {
                         <S.Text variant="h6" component={'span'}>
                             <EmailOutlined /> {dados.email ? dados.email : 'Sem E-mail'}
                         </S.Text>
-                        <S.Text variant="h6" component={'span'}>
+                        <S.Text variant="h6" component={'span'} onClick={openBlog}>
                             <LinkOutlined /> {dados.blog ? dados.blog : 'Sem Blog'}
                         </S.Text>
                         <S.Text variant="h6" component={'span'}>
-                            <LinkOutlined />  {dados.twitter ? dados.twitter : 'Sem Twitter'}
+                            <Twitter />  {dados.twitter ? dados.twitter : 'Sem Twitter'}
                         </S.Text>
                     </Stack>
                     <S.WhiteButton variant="contained" startIcon={<ArrowBack />} onClick={voltarClick}>Voltar</S.WhiteButton>

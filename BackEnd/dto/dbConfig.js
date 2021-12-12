@@ -4,15 +4,15 @@ async function connect() {
         return global.connection;
     }
 
-    const mysql = require("mysql");
-    const connection = mysql.createConnection({
-        host: "localhost",
+    const mysql = require("mysql2/promise");
+    const connection = await mysql.createConnection({
+        host: "mysql",
         port: "3306",
         user: "root",
         password: "123"
     });
 
-    connection.connect((err) => {
+    await connection.connect((err) => {
         if (err) {
             console.log('Erro connecting to database...', err)
             throw err;
@@ -20,25 +20,26 @@ async function connect() {
         console.log('Connection established!')
     });
 
-    connection.query('CREATE DATABASE IF NOT EXISTS BuscaDevGitHub;');
+    await connection.query('CREATE DATABASE IF NOT EXISTS BuscaDevGitHub;');
 
-    connection.query('Use BuscaDevGitHub;');
+    await connection.query('Use BuscaDevGitHub;');
 
-    connection.query(`
+    await connection.query(`
     CREATE TABLE IF NOT EXISTS User (
         Id int NOT NULL AUTO_INCREMENT,
         Name VARCHAR(255), 
         Email VARCHAR(255),
         Password VARCHAR(255),
-        PRIMARY KEY (Id)
+        UNIQUE KEY (Id)
     );`);
 
-    connection.query(`CREATE TABLE IF NOT EXISTS Statistic (
+    await connection.query(`CREATE TABLE IF NOT EXISTS Statistic (
         Id int NOT NULL AUTO_INCREMENT,
         EmailProvider VARCHAR(255), 
         Username VARCHAR(255),
         UserId int,
-        FOREIGN KEY (UserId) REFERENCES User(Id)
+        FOREIGN KEY (UserId) REFERENCES User(Id),
+        UNIQUE KEY (Id)
     );`);
     global.connection = connection;
 

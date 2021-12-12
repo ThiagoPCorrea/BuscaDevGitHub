@@ -11,20 +11,20 @@ class UserService {
   }
 
   async CreateUser(user) {
-    let dbUser = this.GetUser(user.email);
+    let dbUser = await this.GetUser(user.email);
     let conn = await connect();
     let sql = "";
     let values = []
 
-    if (dbUser != null) {
-      sql = "UPDATE User SET Name = ?,Password = ?, WHERE Email = ?";
+    if (dbUser[0].length !== 0) {
+      sql = "UPDATE User SET Name = ?,Password = ? WHERE Email = ?";
       values = [user.name, user.password, user.email];
     } else {
       sql = 'INSERT INTO User(Name,Email,Password) VALUES (?,?,?);';
       values = [user.name, user.email, user.password];
     }
 
-    await conn.query(sql, values, function(err, result){
+    return await conn.query(sql, values, function(err, result){
       return !err
     });
   }
