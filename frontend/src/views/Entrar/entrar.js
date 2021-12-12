@@ -6,13 +6,34 @@ import { CenterGrid } from '../../components/grids/grids'
 import { Email } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { Login, PersonAdd } from '@mui/icons-material';
+import { BackEndRoute } from '../../utils/Consts'
 import './entrar.css'
 
 export const Entrar = () => {
     const navigate = useNavigate();
 
     function btnLoginClick() {
-        navigate("/Busca");
+        const requestOptions = {
+            method: 'Get',
+            headers: { 'Content-Type': 'application/json' },
+            body: {}
+        };
+
+        fetch(BackEndRoute + '/login', requestOptions)
+            .then((response) => {
+                if (response.ok) {
+                    return response.json().then((data) => {
+                        if (data)
+                            navigate("/Busca");
+                    }).catch((err) => {
+                        console.log(err);
+                    })
+                }
+            })
+            .catch(function (error) {
+                console.log('Erro ao buscar usuario: ' + error.message);
+            });
+
     }
 
     function btnCreateUserClick() {

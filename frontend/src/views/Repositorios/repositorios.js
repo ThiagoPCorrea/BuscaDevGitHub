@@ -32,7 +32,7 @@ export const Repositorios = () => {
             .then((response) => {
                 if (response.ok) {
                     return response.json().then((data) => {
-                        setStarsData(data.reduce((accumulator, current) => accumulator + current.stargazers_count, 0));
+                        setStarsData(data.length);
                     }).catch((err) => {
                         console.log(err);
                     })
@@ -66,6 +66,7 @@ export const Repositorios = () => {
     useEffect(() => {
         fetchStars();
         fetchRepos();
+        // eslint-disable-next-line
     }, []);
     
     return (

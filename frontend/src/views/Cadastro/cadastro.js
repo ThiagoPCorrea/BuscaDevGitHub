@@ -6,10 +6,34 @@ import { CenterGrid } from '../../components/grids/grids'
 import { Email, Person } from '@mui/icons-material';
 import { useNavigate  } from 'react-router-dom';
 import { Check, ArrowBack } from '@mui/icons-material';
+import { BackEndRoute } from '../../utils/Consts'
 import './cadastro.css'
 
 export const Cadastro = () => {
     const navigate  = useNavigate();
+
+    function btnConfirmClick(){
+        const requestOptions = {
+            method: 'Get',
+            headers: { 'Content-Type': 'application/json' },
+            body: {}
+        };
+
+        fetch(BackEndRoute + '/create', requestOptions)
+            .then((response) => {
+                if (response.ok) {
+                    return response.json().then((data) => {
+                        if (data)
+                            navigate("/Busca");
+                    }).catch((err) => {
+                        console.log(err);
+                    })
+                }
+            })
+            .catch(function (error) {
+                console.log('Erro ao buscar usuario: ' + error.message);
+            });
+    }
 
     function btnBackClick(){
         navigate('/');
@@ -32,7 +56,7 @@ export const Cadastro = () => {
             <Grid item>
                 <CenterGrid direction='row' spacing={2}>
                     <Grid item>
-                        <GrayButton id="btn_confirm" icon={<Check />}>Confirmar</GrayButton>
+                        <GrayButton id="btn_confirm" icon={<Check />} onClick={btnConfirmClick}>Confirmar</GrayButton>
                     </Grid>
                     <Grid item>
                         <GrayButton id="btn_back" icon={<ArrowBack />} onClick={btnBackClick}>Voltar</GrayButton>

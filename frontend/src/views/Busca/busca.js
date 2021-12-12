@@ -19,10 +19,26 @@ export const Busca = () => {
             .then((response) => {
                 if (response.ok) {
                     return response.json().then((data) => {
-                        navigate('/Repositorios', {state:data});
+                        fetch('https://api.github.com/users/' + username, requestOptions)
+                            .then((response) => {
+                                if (response.ok) {
+                                    return response.json().then((data) => {
+
+
+                                        navigate('/Repositorios', { state: data });
+                                    }).catch((err) => {
+                                        console.log(err);
+                                    })
+                                }
+                            })
+                            .catch(function (error) {
+                                console.log('Erro ao buscar usuario: ' + error.message);
+                            });
+
+                        navigate('/Repositorios', { state: data });
                     }).catch((err) => {
                         console.log(err);
-                    }) 
+                    })
                 }
             })
             .catch(function (error) {
