@@ -4,7 +4,7 @@ class UserService {
   constructor() { }
 
   async GetUser(email) {
-    let conn = connect();
+    let conn = await connect();
     const sql = 'SELECT * FROM User WHERE Email = ?;';
     const values = [email];
     return await conn.query(sql, values);
@@ -12,7 +12,7 @@ class UserService {
 
   async CreateUser(user) {
     let dbUser = this.GetUser(user.email);
-    let conn = connect();
+    let conn = await connect();
     let sql = "";
     let values = []
 

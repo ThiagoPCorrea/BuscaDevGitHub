@@ -5,11 +5,11 @@ async function UserRoutes(fastify, options) {
     const userService = new UserService();
 
     fastify.post('/login', async (request, reply) => {
-        return userService.Login(new UserModel(request.body));
+        return userService.Login(Object.assign(new UserModel,request.body));
     })
 
     fastify.post('/create', async (request, reply) => {
-        return userService.CreateUser(new UserModel(request.body));
+        return userService.CreateUser(Object.assign(new UserModel,request.body));
     })
 }
 

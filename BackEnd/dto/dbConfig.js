@@ -1,15 +1,28 @@
-async function connect(){
-    if(global.connection && global.connection.state !== 'disconnected')
+async function connect() {
+    if (global.connection && global.connection.state !== 'disconnected') {
+        global.connection.connect();
         return global.connection;
- 
+    }
+
     const mysql = require("mysql");
     const connection = mysql.createConnection({
         host: "localhost",
-        user: "yourusername",
-        password: "yourpassword"
-      });
+        port: "3306",
+        user: "root",
+        password: "123"
+    });
 
-    connection.query(`CREATE DATABASE IF NOT EXISTS BuscaDevGitHub;`);
+    connection.connect((err) => {
+        if (err) {
+            console.log('Erro connecting to database...', err)
+            throw err;
+        }
+        console.log('Connection established!')
+    });
+
+    connection.query('CREATE DATABASE IF NOT EXISTS BuscaDevGitHub;');
+
+    connection.query('Use BuscaDevGitHub;');
 
     connection.query(`
     CREATE TABLE IF NOT EXISTS User (
@@ -19,7 +32,7 @@ async function connect(){
         Password VARCHAR(255),
         PRIMARY KEY (Id)
     );`);
-    
+
     connection.query(`CREATE TABLE IF NOT EXISTS Statistic (
         Id int NOT NULL AUTO_INCREMENT,
         EmailProvider VARCHAR(255), 
@@ -28,7 +41,7 @@ async function connect(){
         FOREIGN KEY (UserId) REFERENCES User(Id)
     );`);
     global.connection = connection;
-    
+
     return connection;
 }
 
