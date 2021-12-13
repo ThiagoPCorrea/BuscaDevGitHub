@@ -9,6 +9,12 @@ dotenv.config({path:`.env.${env}`})
 const UserRoutes = require('./Routes/UserRoutes');
 const StatisticRoutes  = require('./Routes/StatisticRoutes');
 
+
+fastify.register(require('fastify-cors'), {
+  origin: "*",
+  methods: "*"
+});
+
 fastify.register(UserRoutes);
 fastify.register(StatisticRoutes);
 

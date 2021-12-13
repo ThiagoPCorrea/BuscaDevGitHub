@@ -24,16 +24,17 @@ class UserService {
       values = [user.name, user.email, user.password];
     }
 
-    return await conn.query(sql, values, function(err, result){
-      return !err
+    await conn.query(sql, values, function(err, result){
+      return false;
     });
+    return true;
   }
 
   async Login(user) {
-    let dbUser = this.GetUser(user.email);
+    let dbUser = await this.GetUser(user.email);
 
-    if (dbUser != null)
-      return dbUser.Password == user.Password;
+    if (dbUser[0].length > 0)
+      return dbUser[0][0].Password === user.password;
 
     return false;
   }

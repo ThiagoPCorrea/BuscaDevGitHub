@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Paper, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { ArrowBack } from '@mui/icons-material';
+import { BackEndRoute } from '../../utils/Consts'
 import { GrayButton } from '../../components/buttons/ContainedButtons'
 import {
     ArgumentAxis,
@@ -10,18 +11,39 @@ import {
     BarSeries,
 } from '@devexpress/dx-react-chart-material-ui';
 
-const data = [
-    { argument: 'Monday', value: 30 },
-    { argument: 'Tuesday', value: 20 },
-    { argument: 'Wednesday', value: 10 },
-    { argument: 'Thursday', value: 50 },
-    { argument: 'Friday', value: 60 },
-];
-
 export const Estatistica = () => {
-    const navigate  = useNavigate();
+    const navigate = useNavigate();
+    const token = sessionStorage.getItem('token');
+    const [dataChart, setDataChart] = useState([]);
 
-    function btnBackClick(){
+    useEffect(() => {
+        if (token === 'null') {
+            navigate('/')
+        }
+        request();
+        // eslint-disable-next-line
+    }, []);
+
+    const requestOptions = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    function request() {
+        fetch('http://' + BackEndRoute + '/statistic/' + token, requestOptions)
+            .then((response) => {
+                if (response.ok) {
+                    return response.json().then((data) => {
+                        setDataChart(data);
+                    }).catch((err) => {
+                        console.log(err);
+                    })
+                }
+            })
+            .catch(function (error) {
+                console.log('Erro ao logar: ' + error.message);
+            });
+    }
+    function btnBackClick() {
         navigate('/Busca');
     }
     return (
@@ -29,7 +51,7 @@ export const Estatistica = () => {
             <Grid item>
                 <Paper>
                     <Chart
-                        data={data}
+                        data={dataChart}
                     >
                         <ArgumentAxis />
                         <ValueAxis />
