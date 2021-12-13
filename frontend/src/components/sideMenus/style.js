@@ -10,6 +10,7 @@ export const Container = styled(Grid)`
 export const UserImage = styled(Avatar)`
     width:fit-content;
     height:fit-content;
+    padding-top:3%
 `;
 
 export const Text = styled(Typography)`

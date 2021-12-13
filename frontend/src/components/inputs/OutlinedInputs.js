@@ -2,12 +2,7 @@ import React from "react";
 import { OutlinedInput, InputLabel, IconButton, InputAdornment,FormControl  } from '@mui/material';
 import { VisibilityOff,Visibility } from '@mui/icons-material';
 
-export const PasswordInput = ({id,label}) => {
-    const [values, setValues] = React.useState({
-        password: '',
-        showPassword: false,
-      });
-
+export const PasswordInput = ({id,label,values,setValues}) => {
       const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
       };
@@ -50,7 +45,7 @@ export const PasswordInput = ({id,label}) => {
 }
 
 
-export const TextInput = ({id,label,icon}) => {
+export const TextInput = ({id,label,icon,onChange}) => {
     return (
         <FormControl variant="outlined">
             <InputLabel htmlFor={id}>{label}</InputLabel>
@@ -59,12 +54,11 @@ export const TextInput = ({id,label,icon}) => {
             type='text'
             endAdornment={
                 <InputAdornment position="end">
-                  <IconButton edge="end">
                     {icon}
-                  </IconButton>
                 </InputAdornment>
             }
             label={label}
+            onChange={onChange}
           />
        </FormControl>
     );

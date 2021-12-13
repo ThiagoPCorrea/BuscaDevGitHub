@@ -1,19 +1,27 @@
-// Require the framework and instantiate it
-// CommonJs
 const fastify = require('fastify')({
   logger: true
 })
 
-// Declare a route
-fastify.get('/', function (request, reply) {
-  reply.send({ hello: 'world' })
-})
+const dotenv = require('dotenv');
+const env = process.env.NODE_ENV || 'localhost'
+dotenv.config({path:`.env.${env}`})
+
+const UserRoutes = require('./Routes/UserRoutes');
+const StatisticRoutes  = require('./Routes/StatisticRoutes');
+
+
+fastify.register(require('fastify-cors'), {
+  origin: "*",
+  methods: "*"
+});
+
+fastify.register(UserRoutes);
+fastify.register(StatisticRoutes);
 
 // Run the server!
-fastify.listen(3000, function (err, address) {
+fastify.listen(process.env.BACKEND_PORT,process.env.BACKEND_HOST, function (err, address) {
   if (err) {
     fastify.log.error(err)
     process.exit(1)
   }
-  // Server is now listening on ${address}
 })

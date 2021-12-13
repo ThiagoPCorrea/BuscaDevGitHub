@@ -1,0 +1,37 @@
+version: '3.1'
+services:
+  adminer:
+    container_name: adminer_prod
+    image: adminer
+    restart: always
+    environment:
+      ADMINER_DESIGN: dracula
+    ports:
+      - 8080:8080
+  mysql:
+    container_name: mysql_prod
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment: 
+      MYSQL_ROOT_PASSWORD: 123
+    ports:
+     - 3306:3306
+     - 33060:33060
+  backend:
+    container_name: backend_prod
+    image: backend
+    restart: always
+    environment: 
+      NODE_ENV: production
+    ports:
+     - 4000:4000
+  frontend:
+    container_name: frontend_prod
+    image: frontend
+    restart: always
+    environment: 
+      NODE_ENV: production
+    ports:
+     - 443:443
+     - 3000:80
